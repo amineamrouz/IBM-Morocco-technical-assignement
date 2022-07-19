@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   isLoading$: Observable<Boolean>;
   products$: Observable<Products[]>;
   error$: Observable<string|null>;
-  product:any
+  products:Products[]=[]
   constructor(
     private store: Store<AppStateInterface>
   ) {
@@ -28,8 +28,7 @@ export class ProductsComponent implements OnInit {
     console.log();
     this.store.select(productsSelector).subscribe((prod:any)=>{
       console.log(prod);
-
-      this.product=prod
+      this.products=prod
     })
   }
 

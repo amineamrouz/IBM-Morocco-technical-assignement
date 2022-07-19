@@ -10,7 +10,7 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  urlBackEnd='https://random-data-api.com/api/coffee/random_coffee '
+  urlBackEnd='https://random-data-api.com/api/coffee/random_coffee?size=50 '
   getProducts():Observable<any> {
     return this.http.get(this.urlBackEnd);
   }

@@ -6,6 +6,7 @@ import { reducers } from './store/reducers';
 import { ProductsService } from './services/products.service';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './store/effects';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -14,7 +15,8 @@ import { ProductsEffects } from './store/effects';
   imports: [
     CommonModule,
     StoreModule.forFeature('products',reducers),
-    EffectsModule.forFeature([ProductsEffects])
+    EffectsModule.forFeature([ProductsEffects]),
+    NgxPaginationModule,
   ],
   exports:[
     ProductsComponent

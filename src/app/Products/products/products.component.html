@@ -1,4 +1,32 @@
-<p>products works!</p>
+
 <div *ngIf="isLoading$ | async"> ...Loading </div>
-<div *ngFor="let product of products$ | async "> {{product.id}} </div>
-<div *ngIf="error$ | async as err"> {{err}} </div>
+<!-- <div *ngFor="let product of products$ | async "> {{product.id}} </div>
+<div *ngIf="error$ | async as err"> {{err}} </div> -->
+<div class="m-5">
+  <table class="table">
+      <thead class="thead-light">
+          <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Blend Name</th>
+              <th scope="col">Origin</th>
+              <th scope="col">Varity</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of products  | paginate: { id: 'foo',
+          itemsPerPage: 10,
+          currentPage: page,
+          totalItems: totalRecords }">
+              <th scope="row">{{item.id}}</th>
+              <td>{{item.blend_name}}</td>
+              <td>{{item.origin}}</td>
+              <td>{{item.variety}}</td>
+          </tr>
+      </tbody>
+  </table>
+  <div>
+    <pagination-controls id='foo' (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+  <!-- <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="usersList.length"></ngb-pagination> -->
+</div>

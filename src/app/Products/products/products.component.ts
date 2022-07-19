@@ -11,10 +11,13 @@ import { Products } from './types/products';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  public page = 1;
+  public pageSize = 10
   isLoading$: Observable<Boolean>;
   products$: Observable<Products[]>;
   error$: Observable<string|null>;
-  products:Products[]=[]
+  products:Products[]=[];
+  totalRecords:number=0;
   constructor(
     private store: Store<AppStateInterface>
   ) {
@@ -27,8 +30,9 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(productActions.getProducts())
     console.log();
     this.store.select(productsSelector).subscribe((prod:any)=>{
-      console.log(prod);
+      console.log(prod.length);
       this.products=prod
+      this.totalRecords=prod.length
     })
   }
 

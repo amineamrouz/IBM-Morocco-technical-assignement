@@ -1,0 +1,4 @@
+<p>products works!</p>
+<div *ngIf="isLoading$ | async"> ...Loading </div>
+<div > {{product.blend_name}} </div>
+<div *ngIf="error$ | async as err"> {{err}} </div>

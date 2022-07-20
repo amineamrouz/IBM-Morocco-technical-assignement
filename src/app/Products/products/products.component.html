@@ -1,9 +1,17 @@
 
-<div *ngIf="isLoading$ | async"> ...Loading </div>
-<!-- <div *ngFor="let product of products$ | async "> {{product.id}} </div>
-<div *ngIf="error$ | async as err"> {{err}} </div> -->
-<div class="m-5">
-  <table class="table">
+<div *ngIf="isLoading$ | async" class="text-center">
+  <img
+  src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/c72ad275091223.5c42e83f85011.gif"
+  class="img-fluid mt-4 " alt="Responsive image" style="width: 200px; height: 200px;">
+</div>
+<div class="container">
+<div class="m-2" *ngIf="!(isLoading$ | async)" >
+  <img
+  src="https://icon-library.com/images/go-back-icon/go-back-icon-13.jpg"
+  class="img-fluid mt-4 " alt="Responsive image" style="width: 200px; height: 200px;"
+  >
+  <h2 class="text-center">Coffee Products</h2>
+  <table class="table ml-3 mr-3">
       <thead class="thead-light">
           <tr>
               <th scope="col">Id</th>
@@ -13,20 +21,27 @@
           </tr>
       </thead>
       <tbody>
+
           <tr *ngFor="let item of products  | paginate: { id: 'foo',
           itemsPerPage: 10,
           currentPage: page,
-          totalItems: totalRecords }">
+          totalItems: totalRecords }"
+          (click)="onleftClick(item)"
+          style="cursor: pointer;"
+          >
               <th scope="row">{{item.id}}</th>
               <td>{{item.blend_name}}</td>
               <td>{{item.origin}}</td>
               <td>{{item.variety}}</td>
           </tr>
+
       </tbody>
   </table>
   <div>
     <pagination-controls id='foo' (pageChange)="page = $event"></pagination-controls>
   </div>
 
-  <!-- <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="usersList.length"></ngb-pagination> -->
+</div>
+
+<router-outlet></router-outlet>
 </div>

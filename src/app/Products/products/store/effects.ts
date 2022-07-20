@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, delay, map, mergeMap, of } from "rxjs";
 import { ProductsService } from "../services/products.service";
 import * as productsActions from "./actions"
 
@@ -10,7 +10,7 @@ export class ProductsEffects{
   constructor(private actions$:Actions, private productsService : ProductsService ){}
 
   getProducts$ = createEffect( ()=>
-  this.actions$.pipe(
+  this.actions$.pipe(delay(2500),
     ofType(productsActions.getProducts),
     mergeMap(()=>{
     return this.productsService.getProducts().pipe(

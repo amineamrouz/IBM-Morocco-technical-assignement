@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { delay, Observable, timeout } from 'rxjs';
 import { AppStateInterface } from 'src/app/Types/app.state.interface';
 import * as productActions from "../products/store/actions";
 import { errorSelector, isLoadingSelector, productsSelector } from './store/selectors';
@@ -11,6 +12,8 @@ import { Products } from './types/products';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  public clickedRow:any;
+  public contextmenu = false;
   public page = 1;
   public pageSize = 10
   isLoading$: Observable<Boolean>;
@@ -19,7 +22,9 @@ export class ProductsComponent implements OnInit {
   products:Products[]=[];
   totalRecords:number=0;
   constructor(
-    private store: Store<AppStateInterface>
+    private store: Store<AppStateInterface>,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.isLoading$=this.store.pipe(select(isLoadingSelector))
     this.products$=this.store.pipe(select(productsSelector))
@@ -34,6 +39,11 @@ export class ProductsComponent implements OnInit {
       this.products=prod
       this.totalRecords=prod.length
     })
+  }
+  onleftClick(event:any) {
+    console.log(event);
+    this.store.dispatch(productActions.getProductsDetailsSuccess({productsDetails:event}))
+    this.router.navigate(['details/' + event.id]);
   }
 
 }

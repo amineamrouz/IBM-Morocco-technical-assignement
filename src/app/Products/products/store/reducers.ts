@@ -20,13 +20,13 @@ export const reducers = createReducer(
   on(productsAction.getProductsFailed, (state, actions) =>({
     ...state, isLoading:false, error:actions.error
   }) ),
-  on(productsAction.getProductsDetails, (state) =>({
+  on(productsAction.setProductsDetails, (state) =>({
     ...state, isLoadingDetails:true
   }) ),
-  on(productsAction.getProductsDetailsSuccess, (state, actions) =>({
+  on(productsAction.setProductsDetailsSuccess, (state, actions) =>({
     ...state, isLoadingDetails:false,productsDetails:actions.productsDetails
   }) ),
-  on(productsAction.getProductsDetailsFailed, (state, actions) =>({
+  on(productsAction.setProductsDetailsFailed, (state, actions) =>({
     ...state, isLoadingDetails:false, error:actions.error
   }) )
 );

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AppStateInterface } from 'src/app/models/app.state.interface';
+import { AppStateInterface } from './../../../Models/app.state.interface';
 import { productsDetailsSelector } from '../store/selectors';
 import { Products } from '../models/products';
 @Component({

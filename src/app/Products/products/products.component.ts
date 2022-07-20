@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { delay, Observable, Subscription, timeout } from 'rxjs';
-import { AppStateInterface } from 'src/app/models/app.state.interface';
+import { AppStateInterface } from './../../Models/app.state.interface';
 import * as productActions from "../products/store/actions";
 import { errorSelector, isLoadingSelector, productsSelector } from './store/selectors';
 import { Products } from './models/products';

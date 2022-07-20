@@ -1,6 +1,6 @@
 import { state } from "@angular/animations";
 import { createSelector } from "@ngrx/store";
-import { AppStateInterface } from "src/app/models/app.state.interface";
+import { AppStateInterface } from './../../../Models/app.state.interface';
 
 export const selectFeature = (state: AppStateInterface) => state.products;
 

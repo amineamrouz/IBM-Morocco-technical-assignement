@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Products } from "../types/products";
+import { Products } from "../models/products";
 
 export const getProducts = createAction('[Products] Get Products')
 export const getProductsSuccess = createAction('[Products] Get Products Success', props<{products : Products[]}>())

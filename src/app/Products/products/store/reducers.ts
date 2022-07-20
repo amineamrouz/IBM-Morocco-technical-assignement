@@ -1,6 +1,6 @@
 
 import { createReducer, on } from "@ngrx/store";
-import { ProductsStateInterface } from "../types/products-state";
+import { ProductsStateInterface } from "../models/products-state";
 import * as productsAction from "./actions";
 export const initialState: ProductsStateInterface={
   isLoading:false,

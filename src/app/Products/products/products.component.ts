@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { delay, Observable, Subscription, timeout } from 'rxjs';
-import { AppStateInterface } from 'src/app/Types/app.state.interface';
+import { AppStateInterface } from 'src/app/models/app.state.interface';
 import * as productActions from "../products/store/actions";
 import { errorSelector, isLoadingSelector, productsSelector } from './store/selectors';
-import { Products } from './types/products';
+import { Products } from './models/products';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -30,18 +30,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(productActions.getProducts())
-    console.log();
     this.subscription.add(this.store.select(productsSelector).subscribe((prod:any)=>{
-      console.log(prod.length);
-      this.products=prod
-      this.totalRecords=prod.length
-    })
-    )
+        this.products=prod
+        this.totalRecords=prod.length
+        if(prod.length == 0 ){
+          this.store.dispatch(productActions.getProducts())
+        }
+      }))
   }
 
   onleftClick(event:Products) {
-    console.log(event);
     this.store.dispatch(productActions.setProductsDetailsSuccess({productsDetails:event}))
     this.router.navigate(['details/' + event.id]);
   }

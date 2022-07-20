@@ -10,10 +10,11 @@
   <table class="table ml-3 mr-3">
       <thead class="thead-light">
           <tr>
-              <th scope="col">Id</th>
+
               <th scope="col">Blend Name</th>
               <th scope="col">Origin</th>
               <th scope="col">Varity</th>
+              <th scope="col">Details</th>
           </tr>
       </thead>
       <tbody>
@@ -21,18 +22,19 @@
           itemsPerPage: 10,
           currentPage: page,
           totalItems: totalRecords }"
-          (click)="onleftClick(item)"
-          style="cursor: pointer;"
           >
-              <th scope="row">{{item.id}}</th>
-              <td>{{item.blend_name}}</td>
+              <th scope="row">{{item.blend_name}}</th>
               <td>{{item.origin}}</td>
               <td>{{item.variety}}</td>
+              <td><button type="button" class="btn btn-secondary btn-sm" (click)="onleftClick(item)"> Details</button></td>
           </tr>
       </tbody>
+      <tfoot>
+        <pagination-controls id='foo' (pageChange)="page = $event"></pagination-controls>
+      </tfoot>
   </table>
   <div>
-    <pagination-controls id='foo' (pageChange)="page = $event"></pagination-controls>
+
   </div>
 </div>
 <router-outlet></router-outlet>
